@@ -10,9 +10,9 @@ class Carrera extends Conexion{
     $this->accesoBD = parent::getConexion();
   }
 
-  public function listarCarrera(){
+  public function listar($idescuela = 0){
     try {
-      $consulta = $this->accesoBD->prepare("CALL spu_carrearas_listar(?)");
+      $consulta = $this->accesoBD->prepare("CALL spu_carreras_listar(?)");
       $consulta->execute(array($idescuela));
       return $consulta->fetchALL(PDO::FETCH_ASSOC);
     } 
