@@ -12,8 +12,11 @@ class Escuela extends Conexion{
 
   public function listarEscuela(){
     try {
-      
-    } catch (Exception $e) {
+      $consulta = $this->accesoBD->prepare("CALL spu_escuelas_listar()");
+      $consulta->execute();
+      return $consulta->fetchALL(PDO::FETCH_ASSOC);
+    } 
+    catch (Exception $e) {
       die($e->getMessage());
     }
   }

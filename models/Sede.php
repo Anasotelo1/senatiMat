@@ -12,8 +12,11 @@ class Sede extends Conexion{
 
   public function listarSedes(){
     try {
-      
-    } catch (Exception $e) {
+      $consulta = $this->accesoBD->prepare("CALL spu_sedes_listar()");
+      $consulta->execute();
+      return $consulta->fetchALL(PDO::FETCH_ASSOC);
+    } 
+    catch (Exception $e) {
       die($e->getMessage());
     }
   }

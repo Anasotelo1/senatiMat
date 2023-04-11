@@ -12,8 +12,11 @@ class Carrera extends Conexion{
 
   public function listarCarrera(){
     try {
-      
-    } catch (Exception $e) {
+      $consulta = $this->accesoBD->prepare("CALL spu_carrearas_listar(?)");
+      $consulta->execute(array($idescuela));
+      return $consulta->fetchALL(PDO::FETCH_ASSOC);
+    } 
+    catch (Exception $e) {
       die($e->getMessage());
     }
   }
